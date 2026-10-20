@@ -1,0 +1,35 @@
+{
+  "model_version": "1.0.0",
+  "trained_at_utc": "2026-10-20T21:19:11.998618+00:00",
+  "model_type": "sklearn.linear_model.LinearRegression",
+  "target": "log1p of upper-99th-percentile-capped Total Job Valuation",
+  "split": {
+    "train_rows": 3500,
+    "test_rows": 1500,
+    "random_state": 42
+  },
+  "feature_count_after_encoding": 20,
+  "train": {
+    "log_rmse": 2.226692045432202,
+    "log_mae": 1.61612614553098,
+    "r2": 0.7813353814987567,
+    "adjusted_r2": 0.7800783270664414,
+    "notebook_mape_percent": 16.15929728834625,
+    "dollar_rmse_against_capped_target": 823515.3708737863,
+    "dollar_mae_against_capped_target": 177806.25902588948
+  },
+  "test": {
+    "log_rmse": 2.2335423099682123,
+    "log_mae": 1.648146644320451,
+    "r2": 0.7803369474572268,
+    "adjusted_r2": 0.7773665207832204,
+    "notebook_mape_percent": 15.836614802782112,
+    "dollar_rmse_against_capped_target": 829198.4113389933,
+    "dollar_mae_against_capped_target": 178906.7621733697
+  },
+  "metric_notes": {
+    "log_errors": "RMSE and MAE are measured on the log1p target.",
+    "dollar_errors": "Dollar errors compare with the target capped at the training 99th percentile.",
+    "mape": "Notebook-compatible MAPE excludes rows whose log target is zero."
+  }
+}

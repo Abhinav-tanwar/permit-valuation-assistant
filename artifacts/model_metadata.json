@@ -1,0 +1,116 @@
+{
+  "model_version": "1.0.0",
+  "trained_at_utc": "2026-10-20T21:19:11.998618+00:00",
+  "source_files_sha256": {
+    "permits.csv": "91188cdab080f4078cf3160d1d007edef55dcafccfbc3e011228bd0f261d2e5b"
+  },
+  "required_input_columns": [
+    "Permit Type",
+    "Work Class",
+    "Permit Class Mapped",
+    "Applied Date",
+    "Total Existing Bldg SQFT",
+    "Remodel Repair SQFT",
+    "Total New Add SQFT",
+    "Number Of Floors",
+    "Housing Units",
+    "Latitude",
+    "Longitude"
+  ],
+  "categories": {
+    "Permit Type": [
+      "BP",
+      "EP",
+      "MP",
+      "PP"
+    ],
+    "Work Class": [
+      "Addition",
+      "Addition and Remodel",
+      "New",
+      "Remodel",
+      "Repair"
+    ],
+    "Permit Class Mapped": [
+      "Commercial",
+      "Residential"
+    ],
+    "Number Of Floors": [
+      "0",
+      "1",
+      "2",
+      "5",
+      "8"
+    ],
+    "Housing Units": [
+      "0",
+      "1",
+      "8"
+    ]
+  },
+  "observed_ranges": {
+    "Total Existing Bldg SQFT": {
+      "min": 0.0,
+      "max": 4595.0
+    },
+    "Remodel Repair SQFT": {
+      "min": 0.0,
+      "max": 21480.0
+    },
+    "Total New Add SQFT": {
+      "min": 0.0,
+      "max": 4844.0
+    },
+    "Number Of Floors": {
+      "min": 0.0,
+      "max": 8.0
+    },
+    "Housing Units": {
+      "min": 0.0,
+      "max": 8.0
+    },
+    "Latitude": {
+      "min": 30.16056764,
+      "max": 30.40332292
+    },
+    "Longitude": {
+      "min": -97.88580922,
+      "max": -97.62757019
+    },
+    "Applied Date": {
+      "min": "1981-04-22",
+      "max": "2022-03-01"
+    }
+  },
+  "target_cap": 5123000.0,
+  "feature_caps": {
+    "Total Existing Bldg SQFT": 4595.0,
+    "Remodel Repair SQFT": 21480.0,
+    "Total New Add SQFT": 4844.0
+  },
+  "lat_mean": 30.269028252697144,
+  "lon_mean": -97.75202983320571,
+  "base_year": 1981,
+  "encoded_feature_names": [
+    "Existing_SQFT_log",
+    "Remodel_SQFT_log",
+    "NewAdd_SQFT_log",
+    "Dist_From_Center",
+    "LatLon",
+    "Time_Index",
+    "Permit Type_EP",
+    "Permit Type_MP",
+    "Permit Type_PP",
+    "Work Class_Addition and Remodel",
+    "Work Class_New",
+    "Work Class_Remodel",
+    "Work Class_Repair",
+    "Permit Class Mapped_Residential",
+    "Number Of Floors_cat_1",
+    "Number Of Floors_cat_2",
+    "Number Of Floors_cat_5",
+    "Number Of Floors_cat_8",
+    "Housing Units_cat_1",
+    "Housing Units_cat_8"
+  ]
+}

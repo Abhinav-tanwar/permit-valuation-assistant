@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Permit Valuation Assistant</title><style>body{font:16px/1.55 system-ui;background:#eef3f6;color:#173448;margin:0}main{max-width:1100px;margin:auto;padding:36px 24px}header{border-top:5px solid #28778b;padding-top:18px}.eyebrow{font-size:12px;letter-spacing:2px;color:#28778b}h1{font-size:39px;line-height:1.15;letter-spacing:-1px}h2{font-size:22px;margin-top:28px}a{color:#246a80}.notice{background:#fff1dc;padding:14px 18px;border-left:4px solid #cc873e}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:16px}.card,details{background:white;border:1px solid #d2dfe7;border-radius:10px;padding:18px}.card h2{margin:10px 0;font-size:21px}.card p{font-size:14px;color:#51697a}.card{color:inherit;text-decoration:none}table{background:white;border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:9px;border-bottom:1px solid #dce5eb;overflow-wrap:anywhere}pre{font-size:12px;overflow:auto}img{max-width:100%;border-radius:8px}footer{margin-top:30px;font-size:13px;color:#51697a}</style></head><body><main><header><p class="eyebrow">ABHINAV TANWAR · PYTHON ANALYSIS</p><h1>Permit Valuation Assistant</h1><p>Saved-model permit valuation with validated inputs and optional constrained explanations.</p></header><h2>Scope and methods</h2><p>Consolidates the repeated permit notebooks and supplied app. Original workbook/notebook copies are byte-preserved locally and excluded from publication; a reduced, explicitly authorized CSV supports execution. The full saved sklearn pipeline computes every valuation. Caps, coordinate means, time origin, categories, and ranges are trained on the training split. Optional Ollama factor explanations cannot change the returned valuation and fall back when numeric or spelled-out currency language is detected. Evaluation retains the source 70/30 random split and the training-capped log1p target. Log-scale R² and errors are not dollar accuracy; dollar errors refer to the capped target. The sample has few distinct categories/dates/locations and is not evidence of future appraisal performance. The original log-target MAPE is a compatibility diagnostic and is not used as a dollar percentage-error claim.</p><h2>Measured results</h2><table><tr><th>Calculated measure</th><th>Value</th></tr><tr><td>split / train rows</td><td>3,500</td></tr><tr><td>split / test rows</td><td>1,500</td></tr><tr><td>split / random state</td><td>42</td></tr><tr><td>feature count after encoding</td><td>20</td></tr><tr><td>train / log rmse</td><td>2.227</td></tr><tr><td>train / log mae</td><td>1.616</td></tr><tr><td>train / r2</td><td>0.7813</td></tr><tr><td>train / adjusted r2</td><td>0.7801</td></tr><tr><td>train / notebook mape percent</td><td>16.16</td></tr><tr><td>train / dollar rmse against capped target</td><td>8.235e+05</td></tr><tr><td>train / dollar mae against capped target</td><td>1.778e+05</td></tr><tr><td>test / log rmse</td><td>2.234</td></tr><tr><td>test / log mae</td><td>1.648</td></tr><tr><td>test / r2</td><td>0.7803</td></tr><tr><td>test / adjusted r2</td><td>0.7774</td></tr><tr><td>test / notebook mape percent</td><td>15.84</td></tr><tr><td>test / dollar rmse against capped target</td><td>8.292e+05</td></tr><tr><td>test / dollar mae against capped target</td><td>1.789e+05</td></tr></table><details><summary>Full result structure</summary><pre>{
+  &quot;model_version&quot;: &quot;1.0.0&quot;,
+  &quot;trained_at_utc&quot;: &quot;2026-10-20T21:19:11.998618+00:00&quot;,
+  &quot;model_type&quot;: &quot;sklearn.linear_model.LinearRegression&quot;,
+  &quot;target&quot;: &quot;log1p of upper-99th-percentile-capped Total Job Valuation&quot;,
+  &quot;split&quot;: {
+    &quot;train_rows&quot;: 3500,
+    &quot;test_rows&quot;: 1500,
+    &quot;random_state&quot;: 42
+  },
+  &quot;feature_count_after_encoding&quot;: 20,
+  &quot;train&quot;: {
+    &quot;log_rmse&quot;: 2.226692045432202,
+    &quot;log_mae&quot;: 1.61612614553098,
+    &quot;r2&quot;: 0.7813353814987567,
+    &quot;adjusted_r2&quot;: 0.7800783270664414,
+    &quot;notebook_mape_percent&quot;: 16.15929728834625,
+    &quot;dollar_rmse_against_capped_target&quot;: 823515.3708737863,
+    &quot;dollar_mae_against_capped_target&quot;: 177806.25902588948
+  },
+  &quot;test&quot;: {
+    &quot;log_rmse&quot;: 2.2335423099682123,
+    &quot;log_mae&quot;: 1.648146644320451,
+    &quot;r2&quot;: 0.7803369474572268,
+    &quot;adjusted_r2&quot;: 0.7773665207832204,
+    &quot;notebook_mape_percent&quot;: 15.836614802782112,
+    &quot;dollar_rmse_against_capped_target&quot;: 829198.4113389933,
+    &quot;dollar_mae_against_capped_target&quot;: 178906.7621733697
+  },
+  &quot;metric_notes&quot;: {
+    &quot;log_errors&quot;: &quot;RMSE and MAE are measured on the log1p target.&quot;,
+    &quot;dollar_errors&quot;: &quot;Dollar errors compare with the target capped at the training 99th percentile.&quot;,
+    &quot;mape&quot;: &quot;Notebook-compatible MAPE excludes rows whose log target is zero.&quot;
+  }
+}</pre></details><footer>Calculated by the included native script. Public-repository status is recorded in the collection index.</footer></main></body></html>
