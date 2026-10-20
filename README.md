@@ -1,2 +1,3 @@
-# permit-valuation-assistant
-A saved-model permit valuation app with training-only preprocessing, validated inputs, and constrained optional explanations.
+# Permit Valuation Assistant
+
+Reproducible saved-model permit valuation. See data/README.md for the authorized input scope.
