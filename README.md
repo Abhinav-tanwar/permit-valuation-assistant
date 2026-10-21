@@ -1,29 +1,65 @@
 # Permit Valuation Assistant
 
-Saved-model permit valuation with validated inputs and optional constrained explanations.
+![Permit Valuation Assistant — charcoal and amber project header](assets/readme-header.svg)
 
-**Author and maintainer:** Abhinav Tanwar.
+Estimate permit valuations through one saved scikit-learn pipeline, with validated inputs and inspectable model metrics. Optional language-model explanations describe factors without changing the calculated estimate.
 
-## Run
+**Python · scikit-learn · pandas · Streamlit · optional Ollama**
 
-Requires Python 3.12. Install dependencies with `python -m pip install -r requirements.txt`.
+![Permit valuation application](screenshots/workspace.png)
+*Actual application with one example estimate. The displayed estimate is not an accuracy measurement.*
+
+## Verified results
+
+| Holdout measure | Result |
+| --- | --- |
+| R² on the capped **log1p target** | **0.7803** |
+| Evaluation split | **3,500 training / 1,500 held-out records**, seed 42 |
+| MAE against the capped dollar target | **$178,907** |
+
+[Saved model metrics](artifacts/model_metrics.json) · [Methodology](docs/methodology.md). Log-scale R² is not dollar accuracy. The large dollar error, limited sample variety and random holdout limit use for future appraisal.
+
+## Run locally
+
+Requires **Python 3.12**. The saved pipeline and reduced CSV are included. OpenAI credentials are not required.
 
 ```sh
-python analysis.py
-python -m unittest discover -s tests
+git clone https://github.com/Abhinav-tanwar/permit-valuation-assistant.git
+cd permit-valuation-assistant
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m streamlit run app.py
 ```
 
-Also run `python test_prediction.py` for the original real-row integrity checks. Launch the interface with `streamlit run app.py`. Ollama is optional; without it, explanations use the deterministic fallback. The model and all learned preprocessing are saved together in `artifacts/permit_valuation_pipeline.joblib`.
+Open **http://localhost:8501**. Enter valid permit details and request an estimate. The saved model computes the valuation. Ollama is optional; explanations use a deterministic fallback when it is unavailable.
 
-## Methods and limitations
+## How it works
 
-Consolidates the repeated permit notebooks and supplied app. Original workbook/notebook copies are byte-preserved locally and excluded from publication; a reduced, explicitly authorized CSV supports execution. The full saved sklearn pipeline computes every valuation. Caps, coordinate means, time origin, categories, and ranges are trained on the training split. Optional Ollama factor explanations cannot change the returned valuation and fall back when numeric or spelled-out currency language is detected. Evaluation retains the source 70/30 random split and the training-capped log1p target. Log-scale R² and errors are not dollar accuracy; dollar errors refer to the capped target. The sample has few distinct categories/dates/locations and is not evidence of future appraisal performance. The original log-target MAPE is a compatibility diagnostic and is not used as a dollar percentage-error claim.
+`Permit inputs → input validation → saved preprocessing + linear regression → inverse transform → estimate`
 
-## Measured results
+- Fit caps, coordinate means, time origin and encoders on training data only.
+- Keep preprocessing and the estimator together in one saved pipeline.
+- Read categories and supported ranges from saved metadata; validate missing, negative and non-finite inputs.
 
-- **Training:** r2 = 0.7813.
-- **Test:** r2 = 0.7803.
+## Verify and reproduce
 
-[Full calculated metrics](results/metrics.json) · [Input provenance](data/README.md) · [Method changes](docs/methodology.md). Open `report.html` for the visual summary.
+```sh
+.venv/bin/python -m unittest discover -s tests
+.venv/bin/python test_prediction.py
+```
 
-The clean notebook in `notebooks/` delegates to the same module. Notebook cells were syntax-checked with outputs cleared; native scripts and tests were executed.
+To retrain from the included CSV and regenerate analysis outputs:
+
+```sh
+.venv/bin/python analysis.py
+```
+
+Retraining replaces saved artifacts and reports. See [input provenance](data/README.md) and [method changes](docs/methodology.md) before comparing metrics across environments.
+
+## Scope and data
+
+A local modeling demonstration, not a certified appraisal. Evaluation uses an upper-99th-percentile training cap and a 70/30 random split. The published input is a reduced permit dataset. Optional explanations cannot calculate or replace the saved-model valuation.
+
+[Technical guide](docs/guide.md) · [Visual report source](report.html)
+
+<sub>macOS/Linux commands shown. On Windows, use `py -3.12 -m venv .venv` and replace `.venv/bin/python` with `.venv\Scripts\python.exe`.</sub>
